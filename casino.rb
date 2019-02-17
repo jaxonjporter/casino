@@ -3,6 +3,7 @@ require_relative "slots.rb"
 require_relative "roulette.rb"
 require_relative "highlow.rb"
 require "pry"
+require "colorize"
 
 class Casino
   attr_accessor :menuoptions
@@ -38,6 +39,8 @@ class Casino
         Luckydice.new(@username, @userwallet)
       when 5
         puts "\nYou have $#{@userwallet}"
+        menu
+        selection
       when 6
         cash_out
       else
@@ -65,6 +68,22 @@ def start_game
     print "> "
     wallet = gets.strip.to_i
   end
+  decal = <<~HEREDOC
+    █     █ █████ ██     ▄████▄  █████  ███▄ ▄███ ██████  ▄▄▄█████  █████     ▄▄▄█████ ██  ██ █████    
+    █  █  █ █     ██     ██▀ ▀█  ██  ██ ██ ▀█▀ ██ █           ██    ██  ██       ██▒   ██  ██ █        
+    █  █  █ ███   ██     ▓█    ▄ ██  ██ ██     ██ ███         ██    ██  ██       ██░   ██▀▀██ ███      
+    █  █  █ █     ██     ▓▓▄ ▄██ ██  ██ ██     ██ ▓█          ██    ██  ██       ██▓   ▓█  ██ ▓█       
+     ██▒██  ████  ██████   ███▀   ████  ██     ██ ▒████       ██    ████▓        ██▒   ▓█  ██ ▒████▒     
+
+                                                                              
+                             ▄████▄  ▄▄▄       ██████ ██ ███▄    █  █████                              
+                             ██▀ ▀█  ████▄   ▒██      ██ ██ ▀█   █ ██   ██                            
+                             ▓█    ▄ ██  ▀█▄   ▓██▄   ██ ██  ▀█ ██ ██   ██                            
+                             ▓▓▄ ▄██ ██▄▄▄▄██      ██ ██ ██   ▐▌██ ██   ██                            
+                              ▓███▀  ▓█   ▓██ ██████  ██ ██     ██  ████▓                                                   
+                      
+  HEREDOC
+  puts decal.blue
   Casino.new(name, wallet)
 end
  
