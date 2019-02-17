@@ -1,13 +1,12 @@
-require "casino.rb"
+require_relative "casino.rb"
 require "colorize"
 class Slots
   def initialize
-    def wallet  # for testing/ delete after.
-      wallet = 5000
-      @wallet = wallet
-      run_slots
-    end
+    wallet = 5000
+    @wallet = wallet
+    run_slots
   end
+  
 
   def multiplier(s1, s2, s3)
     if s1==s2 && s2==s3
@@ -19,14 +18,11 @@ class Slots
     end
   end
 
-  def run_slots!
+  def run_slots
     slotImageList = %w[Cherry Orange Plum Bell Melon Bar]
-
-    puts "How much total money would you like to play with today? "
-    cash = gets.chomp.to_i
+    puts "You have $#{@wallet}".green
     loop do
-      puts "Total cash:  $#{cash}"
-      puts "How much would you like to bet? "
+      puts "How much would you like to bet? ".yellow
       bet = gets.chomp.to_i
 
       @wallet -= bet
@@ -35,17 +31,20 @@ class Slots
       slotImage2 = slotImageList.sample
       slotImage3 = slotImageList.sample
 
-      puts "#{slotImage1} - #{slotImage2} - #{slotImage3}"
+      puts "#{slotImage1} - #{slotImage2} - #{slotImage3}".cyan
 
       winnings = bet * multiplier(slotImage1, slotImage2, slotImage3)
-      puts "You have won $#{winnings}"
+      puts "You have won $#{winnings}".green
 
       @wallet += winnings
 
-      puts "Would you like to continue? (yes to continue) "
-      unless gets.chomp=="yes"
-        puts "You have ended with $#{@wallet}"
-        break
+      puts "Would you like to continue? (yes to continue) ".yellow
+      unless "y"
+        run_slots
+        # # Casino
+      else 
+        exit
+      break
       end
     end
   end
