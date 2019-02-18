@@ -1,51 +1,53 @@
-# require_relative Casino
+require_relative "casino.rb"
 require "colorize"
+
 class Slots
   def initialize
-      wallet = 5000
-      @wallet = wallet
-      run_slots
+    @userwallet = 100000
+    play
   end
- 
 
   def multiplier(s1, s2, s3)
-    if s1==s2 && s2==s3
-      3
-    elsif s1==s2 || s2==s3 || s1==s3
-      2
-    else
-      0
+   if s1==s2 && s2==s3
+     3
+   elsif s1==s2 || s2==s3 || s1==s3
+     2
+   else
+     0
     end
   end
+  
+  def play
+    puts "Welcome to Slots #{@username} ".yellow
+    puts "Would you like to play: ".yellow
+    puts "1) Yes 2) EXIT".yellow
+    gets.to_i
+    if 1
+    @wheel = ["CHERRY","BANANA","COCONUT"]
+    
+    puts "How much would you like to bet? ".green
+    puts "You have $#{@userwallet}".green
+    ante = gets.to_i
+    bet = @userwallet - ante
 
-  def run_slots
-    slotImageList = %w[Cherry Orange Plum Bell Melon Bar]
-
-    puts "How much total money would you like to play with today? ".yellow
-    @wallet = gets.chomp.to_i
-    loop do
-      puts "Total cash:  $#{@wallet}".green
-      puts "How much would you like to bet? ".yellow
-      bet = gets.chomp.to_i
-
-      @wallet -= bet
-
-      slotImage1 = slotImageList.sample
-      slotImage2 = slotImageList.sample
-      slotImage3 = slotImageList.sample
-
-      puts "#{slotImage1} - #{slotImage2} - #{slotImage3}".red
-
-      winnings = bet * multiplier(slotImage1, slotImage2, slotImage3)
-      puts "You have won $#{winnings}".cyan
-
-      @wallet += winnings
-
-      puts "Would you like to continue? (yes to continue) ".yellow
-      unless gets.chomp=="yes"
-        puts "You have ended with $#{@wallet}".green
-        break
+      if ante < @userwallet
+        result1 = @wheel.sample
+        result2 = @wheel.sample
+        result3 = @wheel.sample
+        puts "#{result1} - #{result2} - #{result3}".red
+        win = bet * multiplier(result1, result2, result3)  
+        puts "YOU WIN #{win}".green
+        play
+      else
+        puts "Sorry you don't have enough to cover that bet!".red
+        puts "You have #{@userwallet}".green
+        puts "Try Again".red
+        play
       end
+
+    else 2    
+      exit
+      casino
     end
   end
 end
