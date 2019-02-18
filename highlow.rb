@@ -61,7 +61,7 @@ class Luckydice
   def bet
     puts "\nHow much would you like to bet?"
     print "> $"
-    @amount = gets.to_f
+    @amount = gets.to_i
     if @amount > @wallet
       puts "\nYou may not bet more than you have."
       bet

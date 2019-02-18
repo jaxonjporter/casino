@@ -2,17 +2,17 @@ require_relative "blackjack.rb"
 require_relative "slots.rb"
 require_relative "roulette.rb"
 require_relative "highlow.rb"
+require_relative "boxing.rb"
 require "pry"
 require "colorize"
 
 class Casino
   attr_accessor :menuoptions
   def initialize(name, wallet)
-    @menuoptions = ["Blackjack", "Roulette", "Slots", "Lucky-Dice", "View Balance", "Quit"]
+    @menuoptions = ["Blackjack", "Roulette", "Slots", "Lucky-Dice", "Boxing", "View Balance", "Add Funds", "Quit"]
     @userwallet = wallet
     @username = name
     menu
-    selection
   end
 
   def menu
@@ -22,6 +22,7 @@ class Casino
     @menuoptions.each_with_index do |game, index|
       puts "#{index+1}) #{game}"
     end
+    selection
   end
     
   def selection
@@ -38,10 +39,17 @@ class Casino
       when 4
         Luckydice.new(@username, @userwallet)
       when 5
-        puts "\nYou have $#{@userwallet}"
-        menu
-        selection
+        Boxing.new(@username, @userwallet)
       when 6
+        puts "\nYou have $#{@userwallet}"
+        sleep(2)
+        menu
+      when 7
+        puts "How much would you like to add? "
+        print "> $"
+        @userwallet += gets.strip.to_i
+        menu
+      when 8
         cash_out
       else
         puts "\nInvalid entry, try again."
