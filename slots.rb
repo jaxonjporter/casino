@@ -4,7 +4,7 @@ require "colorize"
 
 class Slots
   def initialize
-    @userwallet = 100000
+    @userwallet #= 100000
     play
   end
 
