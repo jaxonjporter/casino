@@ -7,7 +7,7 @@ class Roulette
   def initialize (name, wallet)
     @name = name
     @wallet = wallet
-    @array = ["red", "black"]
+    @array = [1, 2]
     @bet = 0
     # binding.pry
     bet
@@ -15,7 +15,7 @@ class Roulette
 
   def bet 
     puts "Welcome to Roulette"
-    sleep (2)
+    sleep (1)
     puts "How much would you like to bet?"
     puts "1) 5 Dollars"
     puts "2) 10 Dollars"
@@ -33,7 +33,7 @@ class Roulette
       when 4
         puts "Thanks for playing! Come again!"  
         sleep (3)
-        # Casino.new(@name, @wallet)
+        Casino.new(@name, @wallet)
     end    
       color
     end 
@@ -44,20 +44,16 @@ class Roulette
     puts "1) Red"
     puts "2) Black"
     choice = gets.to_i
-    case choice 
-      when 1
-        if @array.sample == "red" 
-          puts "You Win!!"
-          @bet = @bet * 2
-          @wallet += @bet
-          bet
-        if @array.sample == "black" 
-          puts "You Lose, want to play again?"
-        else 
-          @wallet -= @bet
-        end  
+    if @array.sample == choice
+      puts "You Win!!"
+      @bet = @bet * 2
+      @wallet += @bet
+      bet
+    else
+      puts "You Lose, want to play again?"
+      @wallet -= @bet
+      bet
     end
   end
-end
 end
 Roulette.new("Jaxon", 200)
