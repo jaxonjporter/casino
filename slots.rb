@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require_relative "casino.rb"
 require "colorize"
 
@@ -54,3 +55,5 @@ end
 
 slots = Slots.new
 slots
+=======
+>>>>>>> a522160284a9e1e15fdf34f3b1e944f86d95c874

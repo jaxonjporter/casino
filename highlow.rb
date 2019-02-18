@@ -3,6 +3,16 @@ class Luckydice
   def initialize(name, wallet)
     @name = name
     @wallet = wallet
+    decal = <<~HEREDOC
+       .-------.       .-------.    
+     /    o   / |    /    o   / |
+    /_______ / o|   /_______ / o|
+   | o      |   |  | o      |   |
+   |   o    | o/   |   o    | o/ 
+   |     o  | /    |     o  | /  
+    '-------'       '-------'   
+    HEREDOC
+    puts decal.green
     menu
     Casino.new(@name, @wallet)
   end
@@ -26,7 +36,7 @@ class Luckydice
         menu
       when 3
         puts "You have $#{@wallet}"
-        sleep(1)
+        sleep(2)
         menu
       when 4
         Casino.new(@name, @wallet)
@@ -51,9 +61,9 @@ class Luckydice
   def bet
     puts "\nHow much would you like to bet?"
     print "> $"
-    @amount = gets.to_f
+    @amount = gets.to_i
     if @amount > @wallet
-      puts "You may not bet more than you have."
+      puts "\nYou may not bet more than you have."
       bet
     else
       @wallet -= @amount
@@ -61,7 +71,7 @@ class Luckydice
     end
   end
   def higher_or_lower
-    puts "Do you think the next roll will be:"
+    puts "\nDo you think the next roll will be:"
     puts "1) Higher"
     puts "2) Lower"
     puts "3) The Same\n "
@@ -72,6 +82,7 @@ class Luckydice
       when 1
         if @roll1 < @roll2
           puts "\nYou were right! Congrats. You made #{@amount *= 1.5}"
+          sleep(2)
           @wallet += @amount
           menu
         else
@@ -96,6 +107,9 @@ class Luckydice
             puts "\nYou were wrong. Please play again."
             menu
           end
+      else
+        puts "\nInvalid Entry. Try again."
+        higher_or_lower
      end
   end
        
