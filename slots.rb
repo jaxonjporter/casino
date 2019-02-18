@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require_relative "casino.rb"
 require "colorize"
 
@@ -48,12 +47,10 @@ class Slots
 
     else 2    
       exit
-      casino
+      menu
     end
   end
 end
 
 slots = Slots.new
 slots
-=======
->>>>>>> a522160284a9e1e15fdf34f3b1e944f86d95c874
