@@ -56,4 +56,8 @@ class Roulette
     end
   end
 end
+<<<<<<< HEAD
 Roulette.new("Jaxon", 200)
+=======
+end
+>>>>>>> e252eb528e8df58c17029de1c146ec6e832583df
