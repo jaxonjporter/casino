@@ -56,4 +56,4 @@ class Roulette
     end
   end
 end
-Roulette.new("Jaxon", 200)
+

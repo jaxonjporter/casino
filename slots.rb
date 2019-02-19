@@ -2,8 +2,9 @@ require_relative "casino.rb"
 require "colorize"
 
 class Slots
-  def initialize
-    @userwallet #= 100000
+  def initialize(name, wallet)
+    @username = name
+    @userwallet = wallet
     play
   end
 
@@ -47,10 +48,7 @@ class Slots
 
     else 2    
       exit
-      menu
+      Casino.new(@username, @userwallet)
     end
   end
 end
-
-slots = Slots.new
-slots
