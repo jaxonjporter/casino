@@ -65,17 +65,7 @@ end
     
 
 def start_game
-  puts "\nHello, before you enter the Casino, what is your name?"
-  print "> "
-  name = gets.strip
-  puts "\nHow much money do you have?"
-  print "> $"
-  wallet = gets.strip.to_i
-  while wallet < 2
-    puts "Invalid Entry, try again"
-    print "> "
-    wallet = gets.strip.to_i
-  end
+  
   decal = <<~HEREDOC
     █     █ █████ ██     ▄████▄  █████  ███▄ ▄███ ██████  ▄▄▄█████  █████     ▄▄▄█████ ██  ██ █████    
     █  █  █ █     ██     ██▀ ▀█  ██  ██ ██ ▀█▀ ██ █           ██    ██  ██       ██▒   ██  ██ █        
@@ -92,6 +82,17 @@ def start_game
                       
   HEREDOC
   puts decal.blue
+  puts "\nHello, before you enter the Casino, what is your name?".blue
+  print "> "
+  name = gets.strip
+  puts "\nHow much money do you have?".red
+  print "> $"
+  wallet = gets.strip.to_i
+  while wallet < 2
+    puts "Invalid Entry, try again"
+    print "> "
+    wallet = gets.strip.to_i
+  end
   Casino.new(name, wallet)
 end
  
